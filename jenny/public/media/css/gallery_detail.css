@@ -1,0 +1,33 @@
+#photo_list {
+    width: 598px;
+    overflow: hidden;
+    height: 100px;
+    padding-right: 21px;
+    padding-left: 21px;
+    top: 326px;
+    position: absolute;
+    z-index: 1;
+    background-image: url(/media/images/transparent.png) !important;  /* Mozilla only */
+    background-color: transparent !important;           /* Mozilla only */
+    background-image: none;                             /* IE only */
+    background-color: #ffffff;                          /* IE only */
+    filter:alpha(opacity=50);  
+}
+
+#photo_list li {
+    float: left;
+    padding: 12px 2px;
+}
+
+#current_photo {
+    position: absolute;
+    width: 640px;
+    height: 426px;
+    z-index: 0;
+}
+
+#content {
+    position: relative;
+    overflow: hidden;
+    z-index: 2;
+}

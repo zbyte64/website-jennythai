@@ -1,0 +1,54 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+{% load compressed %} 
+<head> 
+  <meta charset="utf-8" /> 
+  <meta name="author" content="Jenny Thai" /> 
+  <meta name="description" content="{% block description %}{% endblock %}" /> 
+  <meta name="keywords" content="{% block keywords %}{% endblock %}" /> 
+  <title>Jenny Thai Photography | {% block title %}Capture Something{% endblock %}</title> 
+ 
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+  {% compressed_css 'main' %}
+  {% compressed_js 'main' %}
+  <!--[if IE 6]>
+    <link rel="stylesheet" type="text/css" href="http://universal-ie6-css.googlecode.com/files/ie6.0.3.css" media="screen">
+  <![endif]--> 
+  <!--[if lte IE 8]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]--> 
+  {% block extrahead %}{% endblock %}
+  {% block extra_head %}{% endblock %} 
+</head>
+<body>
+    <div id="wrap">
+        <div id="header">
+            <div id="topnav">
+                <nav class="navlinks">
+                {% block topnav %}
+                    <a class="first" href="/">jenny</a>
+                    <a href="{% url gallery.views.gallery_list %}">gallery</a>
+                    <a href="#">clients</a>
+                    <a href="#">products</a>
+                    <a href="{% url blog.views.blogentry_list %}">blog</a>
+                    <a href="#">contact</a>
+                {% endblock %}
+                </nav>
+            </div>
+        </div>
+        <div id="content_frame">
+            <div id="content">
+            {% block content %}
+
+            {% endblock %}
+            </div>
+        </div>
+        <div id="main" class="clearfix">&nbsp;</div>
+    </div>
+    <nav id="footer">
+    {% block footernav %}
+
+    {% endblock %}
+    </nav>
+</body>
+</html>

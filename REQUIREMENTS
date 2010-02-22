@@ -1,0 +1,7 @@
+django
+sorl-thumbnail
+django-adminfiles
+django-oembed
+flickrapi
+gdata
+django-compress

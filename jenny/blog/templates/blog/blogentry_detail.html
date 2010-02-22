@@ -1,0 +1,20 @@
+{% extends "blog/base.html" %}
+{% load adminfiles_tags %}
+
+{% block title %}{{object.title}}{% endblock %}
+
+{% block content %}
+<article pubdate="{{object.date}}">
+    <header>
+        <h2 class="title">
+            <a href="{{object.get_absolute_url}}" rel="bookmark" title="Permanant Link: {{object.title}}">
+                {{object.title}}
+            </a>
+        </h2>
+        <time datetime="{{object.date}}">{{object.date}}</time>
+    </header>
+    <div class="body">
+        {{object.body|render_uploads}}
+    </div>
+</article>
+{% endblock %}

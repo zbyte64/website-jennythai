@@ -1,0 +1,108 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+img {
+    border: none;
+}
+
+html, body, #wrap {height: 100%;}
+
+body > #wrap {height: auto; min-height: 100%;}
+
+#main {padding-bottom: 17px;}  /* must be same height as the footer */
+
+#footer {position: relative;
+	margin-top: -17px; /* negative value of footer height */
+	height: 17px;
+	clear:both;} 
+
+/* CLEAR FIX*/
+.clearfix:after {content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;}
+.clearfix {display: inline-block;}
+/* Hides from IE-mac \*/
+* html .clearfix { height: 1%;}
+.clearfix {display: block;}
+/* End hide from IE-mac */
+
+a {
+    text-decoration: none;
+    color: #000;
+}
+
+a:hover, a.active {
+    color: #b682c7;
+}
+
+ul {
+    list-style: none;
+}
+
+body {
+    background: url(/media/images/jtphoto_BG.png) fixed no-repeat;
+    font-family: "helvetica", "helvetica neuve lt";
+}
+
+#header {
+    background: url(/media/images/JennyThaiLogo.gif) no-repeat;
+    width: 686px;
+    height: 92px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#topnav {
+    margin-top: 0px;
+    margin-left: 51px;
+    width: 635px;
+    height: 75px;
+    display: table;
+    border-bottom: solid 2px #b682c7;
+}
+
+#topnav .navlinks {
+    display: table-row;
+}
+
+#topnav .navlinks a {
+    display: table-cell;
+    text-align: right;
+    vertical-align: bottom;
+    line-height: 25px;
+}
+
+#topnav .navlinks a.first {
+    padding-left: 200px;
+}
+
+#content_frame {
+    margin-left: auto;
+    margin-right: auto;
+    width: 686px;
+    padding-left: 46px;
+}
+
+#content {
+    width: 640px;
+    height: 426px;
+    margin-left: auto;
+    margin-right: auto;
+    border: solid 1px;
+    background-image: url(/media/images/transparent.png) !important;  /* Mozilla only */
+    background-color: transparent !important;           /* Mozilla only */
+    background-image: none;                             /* IE only */
+    background-color: #ffffff;                          /* IE only */
+    filter:alpha(opacity=50);                           /* IE only */
+}
+
+#footer {
+    width: 100%;
+    background-color: #b682c7
+}
+
+

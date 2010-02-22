@@ -1,0 +1,40 @@
+{% extends "gallery/base.html" %}
+{% load compressed %}
+{% block title %}Galleries{% endblock %}
+
+{% block extrahead %}
+{{block.super}}
+{% compressed_css 'gallery_list' %}
+{% compressed_js 'gallery_list' %}
+{% endblock %}
+
+{% block content %}
+{% if object_list %}
+<div id="gallery_info">
+{% for object in object_list %}
+    <div id="gallery_{{object.slug}}">
+        <div class="gallery_description">
+            <h2><a href="{{object.get_absolute_url}}">{{object.name}}</a></h2>
+            <p>{{object.description}}</p>
+        </div>
+        <div class="tall_side_image_preview">
+            <a href="{{object.get_absolute_url}}">
+                <img src="{{object.tall_side_image.url}}" alt="{{object.name}}"/>
+            </a>
+        </div>  
+    </div>
+{% endfor %}
+</div>
+<ul class="gallery_listing">
+{% for object in object_list %}
+    <li>
+        <a href="#gallery_{{object.slug}}">
+            <img src="{{object.thumbnail.url}}" alt="{{object.name}}"/>
+        </a>
+    </li>
+{% endfor %}
+</ul>
+{% else %}
+<strong>No Galleries have been uploaded.</strong>
+{% endif %}
+{% endblock %}

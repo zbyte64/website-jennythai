@@ -1,0 +1,28 @@
+{% extends "blog/base.html" %}
+{% load adminfiles_tags %}
+
+{% block title %}Blog{% endblock %}
+
+{% block content %}
+{% if object_list %}
+<section>
+{% for object in object_list %}
+    <article>
+        <header>
+            <h2 class="title">
+                <a href="{{object.get_absolute_url}}">
+                    {{object.title}}
+                </a>
+            </h2>
+            <time datetime="{{object.date}}">{{object.date}}</time>
+        </header>
+        <div class="body">
+                {{object.body|render_uploads}}
+        </div>
+    </article>
+{% endfor %}
+</section>
+{% else %}
+<strong>No Blogs have been added.</strong>
+{% endif %}
+{% endblock %}

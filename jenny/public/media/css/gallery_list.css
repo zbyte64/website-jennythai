@@ -1,0 +1,45 @@
+#gallery_info {
+    width: 378px;
+    height: 358px;
+    float: left;
+    overflow: hidden;
+}
+
+.gallery_description {
+    border-right: solid 2px #b682c7;
+    width: 240px;
+    float: left;
+    text-align: right;
+    padding-right: 10px;
+    margin-right: 10px;
+}
+
+.gallery_description h2 a {
+    color: #b682c7;
+}
+
+.tall_side_image_preview {
+    width: 116px;
+    height: 358px;
+    overflow: hidden;
+    float: left;
+}
+
+.gallery_listing {
+    width: 254px;
+    float: left;
+}
+
+.gallery_listing li {
+    width: 115px;
+    height: 76px;
+    padding-left: 7px;
+    padding-bottom: 18px
+    float: left;
+    overflow: hidden;
+}
+
+#content {
+    padding-top: 46px;
+}
+

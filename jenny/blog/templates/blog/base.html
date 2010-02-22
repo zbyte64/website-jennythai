@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% load compressed %}
+{% block extrahead %}
+{{block.super}}
+{% compressed_css 'blog' %}
+{% endblock %}

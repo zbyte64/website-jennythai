@@ -1,0 +1,4 @@
+*~
+*.pyc
+jenny/local_settings.py
+jenny/jenny.sqlite

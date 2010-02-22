@@ -1,0 +1,22 @@
+{% extends "gallery/base.html" %}
+{% load compressed %}
+{% block title %}{{object.name}}{% endblock %}
+
+{% block extrahead %}
+{{block.super}}
+{% compressed_css 'gallery_detail' %}
+{% compressed_js 'gallery_detail' %}
+{% endblock %}
+
+{% block content %}
+<div id="current_photo">&nbsp;</div>
+<ul id="photo_list">
+{% for photo in object.photos.all %}
+    <li>
+        <a href="{{photo.display.url}}">
+            <img src="{{photo.thumbnail.url}}" alt=""/>
+        </a>
+    </li>
+{% endfor %}
+</ul>
+{% endblock %}
