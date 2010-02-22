@@ -5,10 +5,10 @@ class PhotoAdminInline(admin.StackedInline):
     model = Photo
 
 class GalleryAdmin(admin.ModelAdmin):
-    class Media:
-        js = ['http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js',
-              'http://jquery.malsup.com/form/jquery.form.js',
-              '/media/js/upload.js']
+    #class Media:
+        #js = ['http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js',
+         #     'http://jquery.malsup.com/form/jquery.form.js',
+         #     '/media/js/upload.js']
 
     list_display = ['name', 'active', 'order']
     list_filter = ['active']

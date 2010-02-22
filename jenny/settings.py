@@ -83,7 +83,9 @@ INSTALLED_APPS = (
     'gallery',
     'blog',
 #    'uploadmanager',
-    
+
+    'oembed',    
+    'sorl.thumbnail',
     'adminfiles',
     'compress',
 )
@@ -92,4 +94,13 @@ from compress_settings import *
 #from django.conf import global_settings 
 #FILE_UPLOAD_HANDLERS = ('uploadmanager.uploadhandler.UploadProgressCachedHandler', ) + \
 #    global_settings.FILE_UPLOAD_HANDLERS
+
+ADMINFILES_BROWSER_VIEWS = ['adminfiles.views.AllView',
+'adminfiles.views.ImagesView',
+'adminfiles.views.AudioView',
+'adminfiles.views.FilesView',
+'adminfiles.views.FlickrView',
+#'adminfiles.views.YouTubeView',
+#'adminfiles.views.VimeoView'
+]
 
