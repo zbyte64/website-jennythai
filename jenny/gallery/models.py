@@ -1,4 +1,5 @@
 from django.db import models
+from sorl.thumbnail.fields import ThumbnailField
 
 # Create your models here.
 class GalleryManager(models.Manager):
@@ -29,8 +30,8 @@ class Gallery(models.Model):
 
 class Photo(models.Model):
     gallery = models.ForeignKey(Gallery, related_name='photos')
-    thumbnail = models.ImageField(upload_to='gallery-photos', help_text='115x76 pixels')
-    display = models.ImageField(upload_to='gallery-photos', help_text='640x426 pixels')
+    thumbnail = ThumbnailField(upload_to='gallery-photos', help_text='115x76 pixels', size=(115,76), options=['crop'])
+    display = ThumbnailField(upload_to='gallery-photos', help_text='640x426 pixels', size=(640,426), options=['crop'])
     order = models.IntegerField(default=0, help_text='Lower number goes first')
 
     def __unicode__(self):

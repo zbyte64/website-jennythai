@@ -1,10 +1,13 @@
 from django.contrib import admin
+from forms import GalleryForm
 from models import Gallery, Photo
 
 class PhotoAdminInline(admin.StackedInline):
     model = Photo
 
 class GalleryAdmin(admin.ModelAdmin):
+    form = GalleryForm
+    
     class Media:
         js = ['http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js',
               'http://jquery.malsup.com/form/jquery.form.js',
@@ -17,3 +20,4 @@ class GalleryAdmin(admin.ModelAdmin):
     inlines = [PhotoAdminInline]
 
 admin.site.register(Gallery, GalleryAdmin)
+
