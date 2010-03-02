@@ -13,5 +13,5 @@ $(document).ready(function() {
         return false;
     });
     $('#gallery_form .photo_ids > div').append('<div id="selected_photos">Added Photos:</div><div id="photo_selector"></div>');
-    $('#photo_selector').load('/gallery/select/ #adminfiles');
+    $('#photo_selector').load('/gallery/select/?field=photo_ids #adminfiles');
 });
