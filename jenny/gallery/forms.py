@@ -46,7 +46,7 @@ class GalleryForm(forms.ModelForm):
             original = urllib2.urlopen(url).read()
             photo = Photo(gallery=self.instance)
             photo.display.save(name, SimpleUploadedFile(name, original), False)
-            photo.thumbnail.save(name, SimpleUploadedFile(name, original), False)
+            photo.thumbnail.save(name, SimpleUploadedFile('th_'+name, original), False)
             photo.save()
 
     def save(self, commit=True):

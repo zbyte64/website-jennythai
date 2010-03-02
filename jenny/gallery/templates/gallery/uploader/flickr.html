@@ -1,0 +1,42 @@
+{% extends "admin/base.html" %}
+{% load thumbnail %}
+{% load i18n %}
+{% block extrastyle %}
+    <link rel="stylesheet" href="{{ ADMINFILES_MEDIA_URL }}adminfiles/adminfiles.css" type="text/css" media="screen" charset="utf-8" />
+    <script type="text/javascript" src="{{ JQUERY_URL }}"></script>
+    <script type="text/javascript" charset="utf-8">
+        var FIELD = parent.document.getElementById('{{field_id}}');
+        var START = "{{ ADMINFILES_REF_START|safe }}";
+        var END = "{{ ADMINFILES_REF_END|safe }}";
+    </script>
+    <script type="text/javascript" src="{{ ADMINFILES_MEDIA_URL }}adminfiles/adminfiles.js"></script>
+
+{% endblock %}
+{% block bodyclass %}adminfiles{% endblock %}
+{% block breadcrumbs %}{% endblock %}
+{% block userlinks %}{% endblock %}
+{% block content %}
+<ul id="adminfiles">
+{% block files %}
+<li class="nav">
+  {% if prev_page %}
+  <a class="prev" href="{{ prev_page }}">&laquo; {% trans "Newer" %}</a>
+  {% endif %}
+  <a class="next" href="{{ next_page }}">{% trans "Older" %} &raquo;</a>
+</li>
+{% for p in photos %}
+<li class="item image flickr" style="background-image:url({{ p.url }})">
+  <div class="popup">
+    <a href="#" class="close" title="Close">X</a>
+    <ul>
+      <li><a class="insert" href="{{ p.url }}" rel="{{ p.link }}" title="{{ p.title }}">{% trans "Insert Photo" %}</a></li>
+    </ul>
+  </div>
+  <div class="upload-title">
+    {{ p.title }}
+  </div>
+</li>
+{% endfor %}
+{% endblock %}
+</ul>
+{% endblock %}
