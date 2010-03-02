@@ -1,6 +1,22 @@
 {% extends "adminfiles/uploader/base.html" %}
 {% load thumbnail %}
 {% load i18n %}
+{% block extrastyle %}
+    <link rel="stylesheet" href="{{ ADMINFILES_MEDIA_URL }}adminfiles/adminfiles.css" type="text/css" media="screen" charset="utf-8" />
+    <script type="text/javascript" src="{{ JQUERY_URL }}"></script>
+    <script type="text/javascript" charset="utf-8">
+        var FIELD = parent.document.getElementById('{{field_id}}');
+    </script>
+    <script type="text/javascript">
+    <!--
+    $(document).ready(function() {
+        $('a.insert').live('click', function() {
+            $(FIELD).append('<a class="remove" href=""><input name="photo_ids" value="'+$(this).attr('rel').split('/').pop()+'"/><img src="'+$(this).attr('href')+'"/></a>';
+        });
+    });
+    -->
+    </script>
+{% endblock %}
 
 {% block content %}
 <ul id="adminfiles">
