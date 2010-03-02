@@ -1,17 +1,11 @@
-$(document).ready(function() {
-    $('#adminfiles a.insert').live('click', function() {
-        var new_photo = '<a class="remove" href="#"><input type="hidden" name="photo_ids" value="'+$(this).attr('rel').split('/').pop()+'"/><img src="'+$(this).attr('href')+'"/></a>';
-        $('#selected_photos').append(new_photo);
-        return false;
+$(document).ready(function(){
+    $('#gallery_form .photo_ids > div').append('<div id="selected_photos">Added Photos:<textinput id="id_photo_ids" "name="photo_ids_text"/></div>');
+    var href = '/gallery/select/?field=photo_ids_text';
+    $('#selected_photos').after('<iframe frameborder="0" style="border:none; width:755px; height:210px;" src="' + href + '"></iframe>');
+    $('#gallery_form').submit(function() {
+        var value = $('#id_photo_ids').val().split();
+        $.each(value, function() {
+            $('#selected_photos').append('<input type="hidden" name="photo_ids" value="'+this.split('/').pop()+'"/>');
+        });
     });
-    $('#adminfiles .next, #adminfiles .prev').live('click', function() {
-        $('#photo_selector').load($(this).attr('href')+' #adminfiles');
-        return false;
-    });
-    $('#selected_photos .remove').live('click', function() {
-        $(this).remove();
-        return false;
-    });
-    $('#gallery_form .photo_ids > div').append('<div id="selected_photos">Added Photos:</div><div id="photo_selector"></div>');
-    $('#photo_selector').load('/gallery/select/?field=photo_ids #adminfiles');
 });
