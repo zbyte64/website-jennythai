@@ -7,6 +7,11 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     (r'^$', 'django.views.generic.simple.direct_to_template', {'template':'index.html'}),
+    (r'^bio/$', 'django.views.generic.simple.direct_to_template', {'template':'bio.html'}),
+    (r'^booking/$', 'django.views.generic.simple.direct_to_template', {'template':'booking.html'}),
+    (r'^contact/$', 'django.views.generic.simple.direct_to_template', {'template':'contact.html'}),
+    (r'^portfolio/$', 'django.views.generic.simple.direct_to_template', {'template':'portfolio.html'}),
+    (r'^reviews/$', 'django.views.generic.simple.direct_to_template', {'template':'reviews.html'}),
     (r'^uploadmanager/', include('uploadmanager.urls')),
     (r'^blog/', include('blog.urls')),
     (r'^gallery/', include('gallery.urls')),

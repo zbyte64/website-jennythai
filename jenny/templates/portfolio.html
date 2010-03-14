@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block extrahead %}
+<style type="text/css">
+<!--
+#apDiv1 {
+	position:absolute;
+	left:93px;
+	top:118px;
+	width:963px;
+	height:563px;
+	z-index:1;
+	color: #cdd882;
+	background-color: cdd882;
+}
+body {
+	background-color: #FFF;
+}
+-->
+</style>
+{% endblock %}
+
+{% block content %}
+    <div id="content_gallery">
+    	<div class="gallery"><img src="/media/images/galleryplaceholder.jpg">
+        </div>
+      <div id="gallery_links"><table width="80" border="0">
+  <tr>
+    <td><a href="g_portrait.html">portraits</a></td>
+  </tr>
+  <tr>
+    <td><a href="g_weddings.html">weddings</a></td>
+  </tr>
+  <tr>
+    <td><a href="g_lovers.html">lovers</a></td>
+  </tr>
+  <tr>
+    <td><a href="g_events.html">events</a></td>
+  </tr>
+  <tr>
+    <td><a href="g_family.html">family</a></td>
+  </tr>
+  <tr>
+    <td><a href="g_artwork.html">artwork</a></td>
+  </tr>
+  <tr>
+    <td><a href="g_personal.html">personal</a></td>
+  </tr>
+</table>
+        </div>
+    </div>
+{% endblock %}
