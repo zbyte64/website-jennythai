@@ -11,7 +11,7 @@ class Gallery(models.Model):
     slug = models.SlugField(help_text='The url name to use', unique=True)
     active = models.BooleanField(default=True, help_text='Uncheck to disable this gallery')
     description = models.TextField()
-    _display = models.ImageField('display', upload_to='gallery-photos', size=(840,560), options=['crop'], db_column='display', blank=True)
+    _display = ThumbnailField('display', upload_to='gallery-photos', size=(840,560), options=['crop'], db_column='display', blank=True)
     order = models.IntegerField(default=0, help_text='Lower number goes first')
 
     objects = GalleryManager()

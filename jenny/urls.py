@@ -13,8 +13,8 @@ urlpatterns = patterns('',
     #(r'^portfolio/$', 'django.views.generic.simple.direct_to_template', {'template':'portfolio.html'}),
     (r'^reviews/$', 'django.views.generic.simple.direct_to_template', {'template':'reviews.html'}),
     (r'^uploadmanager/', include('uploadmanager.urls')),
-    (r'^portfolio/', include('blog.urls')),
-    (r'^gallery/', include('gallery.urls')),
+    (r'^blog/', include('blog.urls')),
+    (r'^portfolio/', include('gallery.urls')),
 
     # Uncomment the admin/doc line below and add 'django.contrib.admindocs' 
     # to INSTALLED_APPS to enable admin documentation:
