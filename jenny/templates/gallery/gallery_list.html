@@ -2,3 +2,14 @@
 {% load compressed %}
 {% block title %}Galleries{% endblock %}
 
+{% block extrahead %}
+{{block.super}}
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#gallery_links a').mouseover(function() {
+        $('#content_gallery .gallery > div').hide();
+        $('#'+$(this).attr('class')).show();
+    });
+});
+</script>
+{% endblock %}

@@ -4,20 +4,61 @@
 
 {% block extrahead %}
 {{block.super}}
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#photo_list a').click(function() {
+        $('#current_photo').css('background-image', 'url('+$(this).attr('href')+')');
+        return false;
+    });
+    var container = $('#photo_container');
+    var ul = $('ul', container);
+    
+    var itemsWidth = ul.innerWidth() - container.outerWidth();
+    
+    $('.slider', container).slider({
+        min: 0,
+        max: itemsWidth,
+        handle: '.handle',
+        stop: function (event, ui) {
+            ul.animate({'left' : ui.value * -1}, 500);
+        },
+        slide: function (event, ui) {
+            ul.css('left', ui.value * -1);
+        }
+    });
+});
+</script>
+<style type="text/css">
+<!--
+#photo_list {
+    list-style: none;
+    float: left;
+}
 
+#photo_container {
+    width: 850px;
+    overflow: hidden;
+}
+
+-->
 {% endblock %}
 
 {% block gallery_images %}
 <div class="gallery">
 <div id="current_photo">&nbsp;</div>
-<ul id="photo_list">
-{% for photo in object.photos.all %}
-    <li>
-        <a href="{{photo.display.url}}">
-            <img src="{{photo.thumbnail.url}}" alt=""/>
-        </a>
-    </li>
-{% endfor %}
-</ul>
+<div id="photo_container">
+    <ul id="photo_list">
+    {% for photo in object.photos.all %}
+        <li>
+            <a href="{{photo.display.url}}">
+                <img src="{{photo.thumbnail.url}}" alt=""/>
+            </a>
+        </li>
+    {% endfor %}
+    </ul>
+    <div class="slider">
+        <div class="handle">&nbsp;</div>
+    </div>  
+</div>
 </div>
 {% endblock %}
