@@ -1,0 +1,23 @@
+{% extends "gallery/base.html" %}
+
+{% block title %}{{object.name}}{% endblock %}
+
+{% block extrahead %}
+{{block.super}}
+
+{% endblock %}
+
+{% block gallery_images %}
+<div class="gallery">
+<div id="current_photo">&nbsp;</div>
+<ul id="photo_list">
+{% for photo in object.photos.all %}
+    <li>
+        <a href="{{photo.display.url}}">
+            <img src="{{photo.thumbnail.url}}" alt=""/>
+        </a>
+    </li>
+{% endfor %}
+</ul>
+</div>
+{% endblock %}
