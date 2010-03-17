@@ -50,7 +50,10 @@ class GalleryForm(forms.ModelForm):
             photo.save()
 
     def save(self, commit=True):
-        self.instance = super(GalleryForm, self).save(commit)
+        self.instance = super(GalleryForm, self).save(True)
         self.upload_from_flickr(self.cleaned_data['photo_ids'])
         return self.instance
+    
+    def save_m2m(self):
+        return
         

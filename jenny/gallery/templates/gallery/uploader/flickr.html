@@ -10,8 +10,9 @@
     <script type="text/javascript">
     <!--
     $(document).ready(function() {
-        $('a.insert').live('click', function() {
-            $(FIELD).append('<a class="remove" href=""><input name="photo_ids" value="'+$(this).attr('rel').split('/').pop()+'"/><img src="'+$(this).attr('href')+'"/></a>';
+        $('li.item').live('click', function() {
+            var link = $(this).find('a.insert');
+            $(FIELD).append('<a class="remove" onclick="$(this).remove();return false"><input name="photo_ids" value="'+link.attr('rel').split('/').pop()+'" type="hidden"/><img src="'+link.attr('href')+'"/></a>');
         });
     });
     -->
