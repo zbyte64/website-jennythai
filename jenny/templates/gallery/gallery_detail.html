@@ -11,11 +11,11 @@ $(document).ready(function() {
         return false;
     });
     var container = $('#photo_container');
-    var ul = $('ul', container);
+    var ul = container.find('ul');
     
     var itemsWidth = ul.innerWidth() - container.outerWidth();
     
-    $('.slider', container).slider({
+    container.find('.slider').slider({
         min: 0,
         max: itemsWidth,
         handle: '.handle',
@@ -32,15 +32,30 @@ $(document).ready(function() {
 <!--
 #photo_list {
     list-style: none;
-    float: left;
+}
+
+#photo_list li {
+    float:left;
+}
+
+#current_photo {
+    height: 560px;
+    width: 840px;
 }
 
 #photo_container {
-    width: 850px;
+    height: 120px;
+    width: 840px;
     overflow: hidden;
+    position: absolute;
+    bottom: 0px;
 }
 
+.gallery {
+    position: relative;
+}
 -->
+</style>
 {% endblock %}
 
 {% block gallery_images %}
