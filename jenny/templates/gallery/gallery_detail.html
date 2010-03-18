@@ -6,8 +6,9 @@
 {{block.super}}
 <script type="text/javascript">
 $(document).ready(function() {
+    var fade_obj = fader($('#current_photo > div'));
     $('#photo_list a').click(function() {
-        $('#current_photo').css('background-image', 'url('+$(this).attr('href')+')');
+        fade_obj.fade_to(parseInt($(this).attr('href').split('-').pop()));
         return false;
     });
     var container = $('#photo_container');
@@ -30,17 +31,16 @@ $(document).ready(function() {
 </script>
 <style type="text/css">
 <!--
-#photo_list {
-    list-style: none;
-}
-
 #photo_list li {
     float:left;
 }
 
-#current_photo {
-    height: 560px;
-    width: 840px;
+#photo_list > ul {
+    position: absolute;
+}
+
+#photo_list {
+    position: relative;
 }
 
 #photo_container {
@@ -60,12 +60,18 @@ $(document).ready(function() {
 
 {% block gallery_images %}
 <div class="gallery">
-<div id="current_photo">&nbsp;</div>
+<div id="current_photo">
+    <ul>
+    {% for photo in object.photos.all %}
+    <li id="#photo={{forloop.counter0}}"><img src="{{photo.display.url}}" alt=""/></li>
+    {% endfor %}    
+    </ul>
+</div>
 <div id="photo_container">
     <ul id="photo_list">
     {% for photo in object.photos.all %}
         <li>
-            <a href="{{photo.display.url}}">
+            <a href="#photo-{{forloop.counter0}}">
                 <img src="{{photo.thumbnail.url}}" alt=""/>
             </a>
         </li>

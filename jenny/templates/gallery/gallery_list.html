@@ -6,10 +6,23 @@
 {{block.super}}
 <script type="text/javascript">
 $(document).ready(function() {
+    var fade_obj = fader($('#current_photo > ul'));
     $('#gallery_links a').mouseover(function() {
-        $('#content_gallery .gallery > div').hide();
-        $('#'+$(this).attr('class')).show();
+        fade_obj.fade_to(parseInt($(this).attr('class').split('-').pop()));
+        return false;
     });
 });
 </script>
+{% endblock %}
+
+{% block gallery_images %}
+<div id="current_photo">
+    <ul class="gallery">
+        {% for gallery in galleries %}
+        <li>
+            <img src="{{gallery.display.url}}">
+        </li>
+        {% endfor %}
+    </ul>
+</div>
 {% endblock %}
