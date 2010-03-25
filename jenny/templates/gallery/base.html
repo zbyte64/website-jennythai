@@ -6,41 +6,45 @@
 #content_gallery ul {
     list-style: none;
 }
-#apDiv1 {
-	position:absolute;
-	left:93px;
-	top:118px;
-	width:963px;
-	height:563px;
-	z-index:1;
-	color: #cdd882;
-	background-color: cdd882;
-}
 #current_photo {
     height: 560px;
     width: 840px;
     overflow: hidden;
+}
+.gallery {
+    position: relative;
 }
 -->
 </style>
 <script type="text/javascript">
 <!--
 function fader(parent) {
-    var items = parent.children();
-    items.hide();
-    var current = items.eq(0).show();
+    var self = {current: 0,
+                items: parent.children()};
+    self.items.hide();
+    self.items.eq(self.current).show();
     parent.css('position', 'relative');
-    items.css({'position':'absolute',
-               'top':0,
-               'left':0});
-    function fade_to(index) {
-        current.css('z-index':1);
-        var next = items.eq(index).css('z-index':0).show();
-        current.fadeOut();
-        current = next;
+    self.items.css({'position':'absolute',
+                    'top':0,
+                    'left':0});
+    function fade_to(index, callback) {
+        if (index==self.current) return;
+        var now = self.items.eq(self.current);
+        now.css('z-index',1);
+        self.items.eq(index).css('z-index',0).show();
+        now.fadeOut(callback);
+        self.current = index;
     }
-    
-    self = {'fade_to':fade_to};
+    function slideshow(delay) {
+        var next = self.current+1;
+        if (next >= self.items.length) next=0;
+        function callback() {
+            setTimeout(function() {self.slideshow(delay)}, delay);
+        }
+        self.fade_to(next, callback);
+    }
+    self.fade_to = fade_to;
+    self.slideshow = slideshow;
     return self;
 }
 -->
@@ -49,9 +53,11 @@ function fader(parent) {
 
 {% block content %}
 <div id="content_gallery">
+    <div class="gallery">
     {% block gallery_images %}
 
     {% endblock %}
+    </div>
     {% block gallery_links %}
     <div id="gallery_links">
         <table width="80" border="0">

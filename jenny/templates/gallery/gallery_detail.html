@@ -6,17 +6,23 @@
 {{block.super}}
 <script type="text/javascript">
 $(document).ready(function() {
-    var fade_obj = fader($('#current_photo > div'));
+    var fade_obj = fader($('#current_photo > ul'));
+    fade_obj.slideshow(5000);
+    $('#photo_browser').hover(function() {
+         $(this).fadeTo(500, 1);
+    }, function() {
+         $(this).fadeTo(500, .01);
+    }).fadeTo(500, .01);
     $('#photo_list a').click(function() {
-        fade_obj.fade_to(parseInt($(this).attr('href').split('-').pop()));
+        var index= parseInt($(this).attr('href').split('-').pop());
+        fade_obj.fade_to(index);
         return false;
     });
     var container = $('#photo_container');
     var ul = container.find('ul');
-    
+    ul.width(ul.children().length * ul.children().outerWidth()); 
     var itemsWidth = ul.innerWidth() - container.outerWidth();
-    
-    container.find('.slider').slider({
+    $('#photo_slider').slider({
         min: 0,
         max: itemsWidth,
         handle: '.handle',
@@ -31,6 +37,9 @@ $(document).ready(function() {
 </script>
 <style type="text/css">
 <!--
+.slider {
+    margin: 10px;
+}
 #photo_list li {
     float:left;
 }
@@ -41,32 +50,37 @@ $(document).ready(function() {
 
 #photo_list {
     position: relative;
+    padding: 0;
+    margin: 0;
+    margin-left: 3px;
+}
+
+#photo_browser {
+    width: 836px;
+    height: 100px;
+    position: absolute;
+    bottom: 0px;
+    z-index: 3;
 }
 
 #photo_container {
-    height: 120px;
-    width: 840px;
+    height: 80px;
+    width: 836px;
     overflow: hidden;
-    position: absolute;
-    bottom: 0px;
-}
-
-.gallery {
-    position: relative;
 }
 -->
 </style>
 {% endblock %}
 
 {% block gallery_images %}
-<div class="gallery">
 <div id="current_photo">
     <ul>
     {% for photo in object.photos.all %}
-    <li id="#photo={{forloop.counter0}}"><img src="{{photo.display.url}}" alt=""/></li>
+    <li id="#photo-{{forloop.counter0}}"><img src="{{photo.display.url}}" alt=""/></li>
     {% endfor %}    
     </ul>
 </div>
+<div id="photo_browser">
 <div id="photo_container">
     <ul id="photo_list">
     {% for photo in object.photos.all %}
@@ -77,9 +91,9 @@ $(document).ready(function() {
         </li>
     {% endfor %}
     </ul>
-    <div class="slider">
-        <div class="handle">&nbsp;</div>
-    </div>  
 </div>
+<div id="photo_slider">
+    <div class="handle">&nbsp;</div>
+</div>  
 </div>
 {% endblock %}

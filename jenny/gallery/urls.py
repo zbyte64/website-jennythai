@@ -6,7 +6,7 @@ from views import FlickrView
 
 gallery_qs = Gallery.objects.live()
 context = {
-    'galleries':gallery_qs
+    'galleries':gallery_qs.all
 }
 
 urlpatterns = patterns('django.views.generic.list_detail',

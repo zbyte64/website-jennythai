@@ -17,7 +17,7 @@ $(document).ready(function() {
 
 {% block gallery_images %}
 <div id="current_photo">
-    <ul class="gallery">
+    <ul>
         {% for gallery in galleries %}
         <li>
             <img src="{{gallery.display.url}}">
