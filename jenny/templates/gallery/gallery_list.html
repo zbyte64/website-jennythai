@@ -5,7 +5,17 @@
 {% block extrahead %}
 {{block.super}}
 <script type="text/javascript">
+function prep_gallery(url) {
+    $.getJSON(url, function(data) {
+        data.items[0].media.b = data.items[0].media.m.replace('_m.jpg', '_b.jpg');
+        $('#current_photo .gallery').append('<li><img src="'+data.items[0].media.b+'"</li>');
+    });
+}
+
 $(document).ready(function() {
+    {% for gallery in object_list %}
+    prep_gallery('{{gallery.flickr_url|safe}}&jsoncallback=?');
+    {% endfor %}
     var fade_obj = fader($('#current_photo > ul'));
     $('#gallery_links a').mouseover(function() {
         fade_obj.fade_to(parseInt($(this).attr('class').split('-').pop()));
@@ -17,12 +27,7 @@ $(document).ready(function() {
 
 {% block gallery_images %}
 <div id="current_photo">
-    <ul>
-        {% for gallery in galleries %}
-        <li>
-            <img src="{{gallery.display.url}}">
-        </li>
-        {% endfor %}
+    <ul class="gallery">
     </ul>
 </div>
 {% endblock %}

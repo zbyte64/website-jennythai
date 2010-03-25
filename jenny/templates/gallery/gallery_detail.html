@@ -6,13 +6,22 @@
 {{block.super}}
 <script type="text/javascript">
 $(document).ready(function() {
-    var fade_obj = fader($('#current_photo > ul'));
-    fade_obj.slideshow(5000);
+    //var fade_obj = fader($('#current_photo > ul'));
+    //fade_obj.slideshow(5000);
     $('#photo_browser').hover(function() {
          $(this).fadeTo(500, 1);
     }, function() {
          $(this).fadeTo(500, .01);
     }).fadeTo(500, .01);
+    $.getJSON('{{object.flickr_url|safe}}&jsoncallback=?', function(data) {
+        var images = $('#current_photo ul');
+        var photo_list = $('#photo_list');
+        $.each(data.items, function(i, item) {
+            item.media.b = item.media.m.replace('_m.jpg', '_b.jpg');
+            images.append('<li id="#photo-'+i+'"><img src="'+item.media.b+'" alt=""/></li>');
+            photo_list.append('<li><a href="#photo-'+i+'"><img src="'+item.media.m+'" alt=""/></a></li>');
+        });
+    var fade_obj = fader($('#current_photo > ul'));
     $('#photo_list a').click(function() {
         var index= parseInt($(this).attr('href').split('-').pop());
         fade_obj.fade_to(index);
@@ -32,7 +41,7 @@ $(document).ready(function() {
         slide: function (event, ui) {
             ul.css('left', ui.value * -1);
         }
-    });
+    });});
 });
 </script>
 <style type="text/css">
@@ -74,22 +83,12 @@ $(document).ready(function() {
 
 {% block gallery_images %}
 <div id="current_photo">
-    <ul>
-    {% for photo in object.photos.all %}
-    <li id="#photo-{{forloop.counter0}}"><img src="{{photo.display.url}}" alt=""/></li>
-    {% endfor %}    
+    <ul> 
     </ul>
 </div>
 <div id="photo_browser">
 <div id="photo_container">
     <ul id="photo_list">
-    {% for photo in object.photos.all %}
-        <li>
-            <a href="#photo-{{forloop.counter0}}">
-                <img src="{{photo.thumbnail.url}}" alt=""/>
-            </a>
-        </li>
-    {% endfor %}
     </ul>
 </div>
 <div id="photo_slider">
