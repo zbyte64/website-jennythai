@@ -103,4 +103,4 @@ ADMINFILES_BROWSER_VIEWS = ['adminfiles.views.AllView',
 #'adminfiles.views.YouTubeView',
 #'adminfiles.views.VimeoView'
 ]
-
+FLICKR_USER_ID = '43513297@N03'

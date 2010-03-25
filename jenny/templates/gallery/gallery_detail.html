@@ -6,6 +6,15 @@
 {{block.super}}
 <script type="text/javascript">
 $(document).ready(function() {
+    $.getJSON('{{object.flickr_url}}', function(data)) {
+        var images = $('#current_photo ul');
+        var photo_list = $('#photo_list');
+        $.each(data.items, function(i, item) {
+            item.media.b = item.media.m.replace('_m.jpg', '_b.jpg');
+            images.append('<li id="#photo-'+i+'"><img src="'+item.media.b+'" alt=""/></li>');
+            photo_list.append('<li><a href="#photo-'+i+'"><img src="'+item.media.m+'" alt=""/></a></li>');
+        });
+    });
     var fade_obj = fader($('#current_photo > div'));
     $('#photo_list a').click(function() {
         fade_obj.fade_to(parseInt($(this).attr('href').split('-').pop()));
@@ -61,21 +70,11 @@ $(document).ready(function() {
 {% block gallery_images %}
 <div class="gallery">
 <div id="current_photo">
-    <ul>
-    {% for photo in object.photos.all %}
-    <li id="#photo={{forloop.counter0}}"><img src="{{photo.display.url}}" alt=""/></li>
-    {% endfor %}    
+    <ul> 
     </ul>
 </div>
 <div id="photo_container">
     <ul id="photo_list">
-    {% for photo in object.photos.all %}
-        <li>
-            <a href="#photo-{{forloop.counter0}}">
-                <img src="{{photo.thumbnail.url}}" alt=""/>
-            </a>
-        </li>
-    {% endfor %}
     </ul>
     <div class="slider">
         <div class="handle">&nbsp;</div>
