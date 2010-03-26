@@ -12,6 +12,8 @@ function fader(parent) {
     }
     function fade_to(index, callback) {
         if (index==self.current) return;
+        if (index < 0) index=self.items.length-1;
+        if (index >= self.items.length) index=0;
         var now = self.items.eq(self.current);
         now.css('z-index',1);
         self.items.eq(index).css('z-index',0).show();
@@ -20,7 +22,6 @@ function fader(parent) {
     }
     function slideshow(delay) {
         var next = self.current+1;
-        if (next >= self.items.length) next=0;
         function callback() {
             setTimeout(function() {self.slideshow(delay)}, delay);
         }

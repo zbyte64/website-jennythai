@@ -6,13 +6,11 @@
 {{block.super}}
 <script type="text/javascript">
 $(document).ready(function() {
-    //var fade_obj = fader($('#current_photo > ul'));
-    //fade_obj.slideshow(5000);
-    $('#photo_browser').hover(function() {
+    $('#photo_browser, .hover').hover(function() {
          $(this).fadeTo(500, 1);
     }, function() {
          $(this).fadeTo(500, .01);
-    }).fadeTo(500, .01);
+    }).fadeTo(100, .01);
     $.getJSON('{{object.flickr_url|safe}}&jsoncallback=?', function(data) {
         var images = $('#current_photo ul');
         var photo_list = $('#photo_list');
@@ -25,6 +23,14 @@ $(document).ready(function() {
     $('#photo_list a').click(function() {
         var index= parseInt($(this).attr('href').split('-').pop());
         fade_obj.fade_to(index);
+        return false;
+    });
+    $('#right_hover a').click(function() {
+        fade_obj.fade_to(fade_obj.current+1);
+        return false;
+    });
+    $('#left_hover a').click(function() {
+        fade_obj.fade_to(fade_obj.current+1);
         return false;
     });
     var container = $('#photo_container');
@@ -77,14 +83,43 @@ $(document).ready(function() {
     width: 836px;
     overflow: hidden;
 }
+
+#current_photo {
+    position: relative;
+}
+
+.hover {
+    z-index: 3;
+    position: absolute;
+    height: 560px;
+    width: 100px;
+}
+
+#left_hover {
+    left: 0;
+}
+
+#right_hover {
+    right: 0;
+}
 -->
 </style>
 {% endblock %}
 
 {% block gallery_images %}
 <div id="current_photo">
+    <div class="hover" id="left_hover">
+        <a href="">
+            <img src="/media/images/arrow_left.gif" alt="left"/>
+        </a>
+    </div>
     <ul> 
     </ul>
+    <div class="hover" id="right_hover">
+        <a href="">
+            <img src="/media/images/arrow_right.gif" alt="right"/>
+        </a>
+    </div>
 </div>
 <div id="photo_browser">
 <div id="photo_container">
