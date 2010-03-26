@@ -3,13 +3,23 @@
 {% block extrahead %}
 <script type="text/javascript">
 <!--
-swfobject.registerObject("FlashID");
+//swfobject.registerObject("FlashID");
+$(document).ready(function() {
+    var fade_obj = fader($('#into_slideshow > ul'));
+    fade_obj.slideshow({{rotator.delay}}*1000);
+});
 //-->
 </script>
 {% endblock %}
 
 {% block content %}
 	<div id="intro_slideshow">
+	    <ul>
+	    {% for image in rotator.images.all %}
+	    <li><img src="image.image.url" alt=""/></li>
+	    {% endfor %}
+	    </ul>
+	    {% comment %}
     	<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="950" height="575" id="FlashID" title="intro">
     	  <param name="movie" value="/media/flash/intro.swf" />
     	  <param name="quality" value="high" />
@@ -34,5 +44,6 @@ swfobject.registerObject("FlashID");
   	    </object>
     	  <!--<![endif]-->
   	  </object>
+      {% endcomment %}
     </div>
 {% endblock %}

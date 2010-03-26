@@ -82,6 +82,7 @@ INSTALLED_APPS = (
 
     'gallery',
     'blog',
+    'imagerotator',
 #    'uploadmanager',
 
     'oembed',    
