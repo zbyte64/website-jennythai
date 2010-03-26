@@ -5,10 +5,13 @@
 {% block extrahead %}
 {{block.super}}
 <script type="text/javascript">
+var fade_obj;
+
 function prep_gallery(url) {
     $.getJSON(url, function(data) {
         data.items[0].media.b = data.items[0].media.m.replace('_m.jpg', '_b.jpg');
         $('#current_photo .gallery').append('<li><img src="'+data.items[0].media.b+'"</li>');
+        fade_obj.refresh();
     });
 }
 
@@ -16,7 +19,7 @@ $(document).ready(function() {
     {% for gallery in object_list %}
     prep_gallery('{{gallery.flickr_url|safe}}&jsoncallback=?');
     {% endfor %}
-    var fade_obj = fader($('#current_photo > ul'));
+    fade_obj = fader($('#current_photo > ul'));
     $('#gallery_links a').mouseover(function() {
         fade_obj.fade_to(parseInt($(this).attr('class').split('-').pop()));
         return false;

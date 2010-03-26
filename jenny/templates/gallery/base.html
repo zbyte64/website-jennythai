@@ -21,12 +21,15 @@
 function fader(parent) {
     var self = {current: 0,
                 items: parent.children()};
-    self.items.hide();
-    self.items.eq(self.current).show();
     parent.css('position', 'relative');
-    self.items.css({'position':'absolute',
-                    'top':0,
-                    'left':0});
+    function refresh() {
+        self.items = parent.children();
+        self.items.hide();
+        self.items.eq(self.current).show();
+        self.items.css({'position':'absolute',
+                        'top':0,
+                        'left':0});
+    }
     function fade_to(index, callback) {
         if (index==self.current) return;
         var now = self.items.eq(self.current);
@@ -45,6 +48,8 @@ function fader(parent) {
     }
     self.fade_to = fade_to;
     self.slideshow = slideshow;
+    self.refresh = refresh;
+    refresh();
     return self;
 }
 -->
