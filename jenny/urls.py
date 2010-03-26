@@ -10,7 +10,7 @@ from imagerotator.models import Rotator
 home_images = lambda: Rotator.objects.get(key='home images')
 
 urlpatterns = patterns('',
-    (r'^$', 'django.views.generic.simple.direct_to_template', {'template':'index.html', extra_context={'rotator':home_images}}),
+    (r'^$', 'django.views.generic.simple.direct_to_template', {'template':'index.html', 'extra_context':{'rotator':home_images}}),
     (r'^bio/$', 'django.views.generic.simple.direct_to_template', {'template':'bio.html'}),
     (r'^booking/$', 'django.views.generic.simple.direct_to_template', {'template':'booking.html'}),
     (r'^contact/$', 'django.views.generic.simple.direct_to_template', {'template':'contact.html'}),

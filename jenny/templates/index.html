@@ -5,7 +5,7 @@
 <!--
 //swfobject.registerObject("FlashID");
 $(document).ready(function() {
-    var fade_obj = fader($('#into_slideshow > ul'));
+    var fade_obj = fader($('#intro_slideshow > ul'));
     fade_obj.slideshow({{rotator.delay}}*1000);
 });
 //-->
@@ -16,7 +16,7 @@ $(document).ready(function() {
 	<div id="intro_slideshow">
 	    <ul>
 	    {% for image in rotator.images.all %}
-	    <li><img src="image.image.url" alt=""/></li>
+	    <li><img src="{{image.image.url}}" alt=""/></li>
 	    {% endfor %}
 	    </ul>
 	    {% comment %}

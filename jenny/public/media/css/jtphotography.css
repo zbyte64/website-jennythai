@@ -3,6 +3,10 @@ body {
 	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif
 }
 
+ul {
+	list-style: none;
+}
+
 #container_index {
 	margin: auto;
 	width:1000px;
@@ -11,8 +15,6 @@ body {
 #top_nav {
 	height: 100px;
 	width: 1000px;
-	clear: both;
-	float: left;
 }
 
 #top_nav .logo {
