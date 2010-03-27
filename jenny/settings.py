@@ -89,6 +89,7 @@ INSTALLED_APPS = (
     'sorl.thumbnail',
     'adminfiles',
     'compress',
+    'tagging',
 )
 from local_settings import *
 from compress_settings import *
