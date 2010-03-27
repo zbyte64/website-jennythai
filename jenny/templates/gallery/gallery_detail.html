@@ -16,7 +16,7 @@ $(document).ready(function() {
         var photo_list = $('#photo_list');
         $.each(data.items, function(i, item) {
             item.media.b = item.media.m.replace('_m.jpg', '_b.jpg');
-            images.append('<li id="#photo-'+i+'"><img src="'+item.media.b+'" alt=""/></li>');
+            images.append('<li id="#photo-'+i+'"><img src="'+item.media.b+'" width="840" alt=""/></li>');
             //photo_list.append('<li><a href="#photo-'+i+'"><img src="'+item.media.m+'" alt=""/></a></li>');
         });
     var fade_obj = fader($('#current_photo > ul'));
