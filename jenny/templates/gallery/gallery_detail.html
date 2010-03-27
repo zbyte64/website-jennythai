@@ -16,8 +16,8 @@ $(document).ready(function() {
         var photo_list = $('#photo_list');
         $.each(data.items, function(i, item) {
             item.media.b = item.media.m.replace('_m.jpg', '_b.jpg');
-            images.append('<li id="#photo-'+i+'"><img src="'+item.media.b+'" alt=""/></li>');
-            photo_list.append('<li><a href="#photo-'+i+'"><img src="'+item.media.m+'" alt=""/></a></li>');
+            images.append('<li id="#photo-'+i+'"><img src="'+item.media.b+'" width="840" alt=""/></li>');
+            //photo_list.append('<li><a href="#photo-'+i+'"><img src="'+item.media.m+'" alt=""/></a></li>');
         });
     var fade_obj = fader($('#current_photo > ul'));
     $('#photo_list a').click(function() {
@@ -30,7 +30,7 @@ $(document).ready(function() {
         return false;
     });
     $('#left_hover a').click(function() {
-        fade_obj.fade_to(fade_obj.current+1);
+        fade_obj.fade_to(fade_obj.current-1);
         return false;
     });
     var container = $('#photo_container');
@@ -92,7 +92,13 @@ $(document).ready(function() {
     z-index: 3;
     position: absolute;
     height: 560px;
-    width: 100px;
+    width: 200px;
+    top: 220px;
+    text-decoration: none;
+}
+
+.hover img {
+    border: none;
 }
 
 #left_hover {
@@ -101,6 +107,7 @@ $(document).ready(function() {
 
 #right_hover {
     right: 0;
+    text-align: right;
 }
 -->
 </style>
@@ -126,8 +133,10 @@ $(document).ready(function() {
     <ul id="photo_list">
     </ul>
 </div>
+<!--
 <div id="photo_slider">
     <div class="handle">&nbsp;</div>
-</div>  
+</div> 
+--> 
 </div>
 {% endblock %}

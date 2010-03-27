@@ -10,7 +10,7 @@ var fade_obj;
 function prep_gallery(url) {
     $.getJSON(url, function(data) {
         data.items[0].media.b = data.items[0].media.m.replace('_m.jpg', '_b.jpg');
-        $('#current_photo .gallery').append('<li><img src="'+data.items[0].media.b+'"</li>');
+        $('#current_photo .gallery').append('<li><img width="840" src="'+data.items[0].media.b+'"</li>');
         fade_obj.refresh();
     });
 }
