@@ -12,6 +12,11 @@
             </a>
         </h2>
         <time datetime="{{object.date}}">{{object.date}}</time>
+        <div class="tags">
+            {% for tagname, url in object.tag_urls %}
+            <a href="{{url}}">{{tagname}}</a>{% if not forloop.last %},{% endif %}
+            {% endfor %}
+        </div>
     </header>
     <div class="body">
         {{object.body|render_uploads}}
